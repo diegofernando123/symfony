@@ -1,0 +1,33 @@
+{% block fos_user_content %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+
+<fieldset>
+
+    <div class="row register_page">
+        <div class="col-sm-12">
+            <h1 class="register_title text-center mdl-typography--display-3 mdl-color-text--blue-900">Reset Your Password</h1>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <i class="material-icons">mail_outline</i>
+            <label class="mdl-textfield__label" for="login_form_email">Email:</label>
+            <input type="text" id="login_form_email" name="username" autocomplete="off" class="mdl-textfield__input" />		<span class="mdl-textfield__error">Please provide correct email address</span>
+        </div>
+
+            <div class="additional_buttons">
+                <ul>
+                    <li>
+                        <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" type="submit" value="Submit" />
+                    </li>
+                </ul>
+            </div>
+    </div>
+
+</fieldset>
+
+</form>
+
+{% endblock %}
+
+

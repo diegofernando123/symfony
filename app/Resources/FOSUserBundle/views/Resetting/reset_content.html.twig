@@ -1,0 +1,25 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+
+<fieldset>
+
+        <div class="col-sm-12">
+            <h1 class="register_title text-center mdl-typography--display-3 mdl-color-text--blue-900">Update Your Password</h1>
+        </div>
+
+    {{ form_widget(form) }}
+            <div class="additional_buttons">
+                <ul>
+                    <li>
+
+        <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" value="{{ 'resetting.reset.submit'|trans }}" />
+        
+                    </li>
+                </ul>
+            </div>
+
+
+</fieldset>
+    
+{{ form_end(form) }}

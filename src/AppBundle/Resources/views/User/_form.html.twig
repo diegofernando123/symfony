@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+            {% form_theme form 'form/user_fields.html.twig' %}
+
+<div class="content">
+    {{ form_widget(form) }}
+
+    <div class="line submit">
+    	<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+    		Submit
+    	</button>
+    </div>
+
+    <div class="line submit">
+    	<br/><br/>
+        <a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Delete My Account</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+		$("#appbundle_user_location" ).autocomplete({
+      		source: "/place/autocomplete",
+      		minLength: 2,
+      		select: function( event, ui ) {
+      		}
+		});
+    });
+</script>
+
+{{ form_end(form) }}

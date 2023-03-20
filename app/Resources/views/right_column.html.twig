@@ -1,0 +1,26 @@
+<div class="colum_right" id="aside1">
+    <div class="colum_wrapper" id="right_colum_wrapper">
+
+    	{{ render(controller('AppBundle:Network:recentlyFriends')) }}
+
+    	{{ render(controller('AppBundle:Network:peopleYouMayKnow')) }}
+
+    	{{ render(controller('AppBundle:Network:friendsOnline')) }}
+
+        <div class="partners_block">
+            <a href="#">
+                <img src="{{asset('bundles/framework/images/img-1.png')}}" alt=""/>
+            </a>
+            <a href="#">
+                <img src="{{asset('bundles/framework/images/img-2.png')}}" alt=""/>
+            </a>
+            <a href="#">
+                <img src="{{asset('bundles/framework/images/img-3.png')}}" alt=""/>
+            </a>
+            <a href="#">
+                <img src="{{asset('bundles/framework/images/img-4.png')}}" alt=""/>
+            </a>
+        </div>
+
+    </div>
+</div><!-- colum_right -->

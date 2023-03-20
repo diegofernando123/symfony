@@ -1,0 +1,41 @@
+liip_imagine:
+  resolvers:
+    default:
+      web_path: ~
+
+  filter_sets:
+    cache: ~
+
+    # the name of the "filter set"
+    media_thumb:
+
+      # adjust the image quality to 75%
+      quality: 75
+
+      # list of transformations to apply (the "filters")
+      filters:
+
+        # create a thumbnail: set size to 120x90 and use the "outbound" mode
+        # to crop the image when the size ratio of the input differs
+        thumbnail: { size: [93, 90], mode: outbound }
+
+        # create a 2px black border: center the thumbnail on a black background
+        # 4px larger to create a 2px border around the final image
+        background: { size: [93, 93], position: center, color: '#ffffff' }
+
+    # the name of the "filter set"
+    media_height_238_160_outbound:
+
+      # adjust the image quality to 75%
+      quality: 75
+
+      # list of transformations to apply (the "filters")
+      filters:
+
+        # create a thumbnail: set size to 120x90 and use the "outbound" mode
+        # to crop the image when the size ratio of the input differs
+        thumbnail: { size: [238, 160], mode: outbound }
+
+        # create a 2px black border: center the thumbnail on a black background
+        # 4px larger to create a 2px border around the final image
+        background: { size: [238, 160], position: center, color: '#ffffff' }

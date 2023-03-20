@@ -1,0 +1,13 @@
+{% block content %}
+
+{% if(lastPostDate > 0) %}
+
+    {% for post in posts %}
+        {% include 'AppBundle:Post:_item.html.twig' %}
+    {% endfor %}
+
+    <div class="bottom-trigger" data-href="{{ path('post_ajax_timeline', {'user': user.id, 'fromDate': lastPostDate }) }}"></div>
+
+{% endif %}
+
+{% endblock %}

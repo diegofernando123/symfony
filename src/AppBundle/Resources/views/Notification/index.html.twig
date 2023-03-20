@@ -1,0 +1,109 @@
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		$(".header_pop_up_filter .theme-post").click(function() {
+			$(".header_pop_up_filter .theme-post").removeClass('active');
+			var type = $(this).addClass('active').data("type");
+			if(type == "") {
+				$(".notification-hidden").removeClass("notification-hidden").show(200);
+			} else {
+
+				if(type == "vote") {
+					$(".notification-vote_post,.notification-vote_comment,.notification-vote_user,.notification-vote_company").removeClass("notification-hidden").show(200);
+					$(".notification-comment").addClass("notification-hidden").hide(200);
+					$(".notification-user").addClass("notification-hidden").hide(200);
+				}
+
+				if(type == "comment") {
+					$(".notification-comment").removeClass("notification-hidden").show(200);
+					$(".notification-vote_post,.notification-vote_comment,.notification-vote_user,.notification-vote_company").addClass("notification-hidden").hide(200);
+					$(".notification-user").addClass("notification-hidden").hide(200);
+				}
+
+				if(type == "user") {
+					$(".notification-user").removeClass("notification-hidden").show(200);
+					$(".notification-vote_post,.notification-vote_comment,.notification-vote_user,.notification-vote_company").addClass("notification-hidden").hide(200);
+					$(".notification-comment").addClass("notification-hidden").hide(200);
+				}
+			}
+		});
+	});
+</script>
+
+<!-- Notifications -->
+<div class="user_ico user_notifications">
+    {% if count != 0 %}
+        <i class="fa fa-bell" aria-hidden="true"></i><div class="circle_num"><strong>{{ count }}</strong></div>
+    {% else %}
+        <i class="fa fa-bell" aria-hidden="true"></i>
+    {% endif %}
+
+    {% if count != 0 %}
+            <div class="header_pop_up">
+                <div class="header_pop_up_wrapper">
+                    <div class="header_pop_up_wrapper_top">
+                        <div class="header_pop_up_filter">
+                            <p>Filter on:</p>
+                            <span class="theme-post th_all" data-type="">View All</span>
+                            <span class="theme-post th_users" data-type="user"><i class="fa fa-users" aria-hidden="true"></i><span>Friends</span></span>
+{#                          <span class="theme-post th_post" data-type="post"><i class="fa fa-file" aria-hidden="true"></i><span>Posts</span></span> #}
+                            <span class="theme-post th_comment" data-type="comment"><i class="fa fa-comment" aria-hidden="true"></i><span>Comments</span></span>
+                            <span class="theme-post th_like" data-type="vote"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>Votes</span></span>
+{#                          <span class="theme-post th_varning" data-type="warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span>Warnings</span></span> #}
+                        </div>
+                        <p><strong>Notifications</strong></p>
+                    </div>
+                <div class="header_pop_up_wrapper_body">
+                    <ul>
+                        {% if pending is not empty %}
+                            <li><h5>New friends requests</h5>
+                                <ul>
+                                    {% for notification in pending %}
+                                        <li class="notification-user">{% include 'AppBundle:Notification:network.html.twig' %}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                        {% if accepted is not empty %}
+                            <li><h5>You are now friends</h5>
+                                <ul>
+                                    {% for notification in accepted %}
+                                        <li class="notification-user">{% include 'AppBundle:Notification:network.html.twig' %}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                        {% if notes is not empty %}
+                            <li><h5>Notice</h5>
+                                <ul>
+                                    {% for note in notes %}
+                                        <li class="notification-{{ note.type }}">
+
+{% if(note.data['user_avatar'] != null) %}
+    <span class="img"><a href="#">
+          <img src="{{ asset('bundles/framework/images/user/' ~ note.data['user_avatar']) }}">
+        </a></span>
+{% else %}
+    <span class="img"><a href="#">
+          <img src="{{ asset('bundles/framework/images/no_avatar.png') }}">
+        </a></span>
+{% endif %}
+
+<div class="text_wrapper">
+                                        {% include 'AppBundle:Notification:' ~ note.type ~'.html.twig' %}
+</div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    </ul>
+                <div class="header_pop_up_wrapper_bottom">
+                    <a href="#">See All</a>
+                </div>
+                </div>
+            </div>
+            </div>
+        {% endif %}
+</div>
+<!-- End Notifications -->
